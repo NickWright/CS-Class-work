@@ -122,17 +122,17 @@ public class titleCleaner
 		//create a file for the directory
 		File directory = new File(dir.toString());
 		
-        File cleanFile = new File(dir.getParent() + "\\" + 
+        	File cleanFile = new File(dir.getParent() + "\\" + 
         	titleCleanse(dir.getFileName().toString()));
         
-        //rename the file
-        directory.renameTo(cleanFile);  
+        	//rename the file
+        	directory.renameTo(cleanFile);  
         
-        //OUTPUT****************************************
-        System.out.print("Cleaning folder title: ");  		
-        System.out.println(dir.getFileName().toString());
-        System.out.print("New Folder Name: ");
-        System.out.println(cleanFile.getName().toString());
+        	//OUTPUT****************************************
+        	System.out.print("Cleaning folder title: ");  		
+        	System.out.println(dir.getFileName().toString());
+        	System.out.print("New Folder Name: ");
+        	System.out.println(cleanFile.getName().toString());
 		
 	}
 	
@@ -217,19 +217,22 @@ public class titleCleaner
   				// Visit each directory and if needed rename directory
   				@Override
    		 		public FileVisitResult preVisitDirectory(Path dir,
-    	        BasicFileAttributes attrs) throws IOException
-    	 	    {
-       	    	 	System.out.format("Visiting Directory: %s%n", dir.getFileName().toString());
+    	        		BasicFileAttributes attrs) throws IOException
+    	 	    		{
+       	    	 			System.out.format("Visiting Directory: %s%n", dir.getFileName().toString());
  				
  					//check if folder has messy title          
-            		if (messyFile(dir))
-            		{
-            			//clean the title 
-            			cleanFolder(dir);
-            		}        	
-            		System.out.println("");	
-        			return FileVisitResult.CONTINUE;
-    			}
+            				if (messyFile(dir))
+            				{
+            					//clean the title 
+            					cleanFolder(dir);
+            				}        	
+            				
+            				System.out.println("");	
+            			
+            				//continue traversing directories
+        				return FileVisitResult.CONTINUE;
+    				}
   			
   				//visit each file in directory and clean it if its messy
 				@Override
